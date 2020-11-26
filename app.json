@@ -22,6 +22,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "React Native Application to visualize the CPU Scheduling with different Processes and Animations."
   }
 }
