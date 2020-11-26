@@ -20,8 +20,8 @@ export default function App({ navigation }) {
     { id: "3", name: "Round Robin" },
     { id: "4", name: "LJF" },
     { id: "5", name: "LRTF" },
-    { id: "6", name: "HRRN" },
-    { id: "7", name: "Priority Scheduling" },
+    { id: "6", name: "Priority Scheduling(P)" },
+    { id: "7", name: "Priority Scheduling(NP)" },
   ];
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
@@ -72,7 +72,7 @@ export default function App({ navigation }) {
 
           <TouchableHighlight
             style={styles.algoBox}
-            onPress={() => navigation.navigate("SRTF Algorithm", Algorithms[1])}
+            onPress={() => navigation.navigate("SRTF Algorithm", Algorithms[2])}
           >
             <View style={styles.algoBox} backgroundColor="rgb(1, 95, 223)">
               <LinearGradient
@@ -91,7 +91,7 @@ export default function App({ navigation }) {
           <TouchableHighlight
             style={styles.algoBox}
             onPress={() =>
-              navigation.navigate("Round Robin Algorithm", Algorithms[1])
+              navigation.navigate("Round Robin Algorithm", Algorithms[3])
             }
           >
             <View style={styles.algoBox} backgroundColor="rgb(250, 5, 17)">
@@ -113,7 +113,7 @@ export default function App({ navigation }) {
 
           <TouchableHighlight
             style={styles.algoBox}
-            onPress={() => navigation.navigate("LJF Algorithm", Algorithms[1])}
+            onPress={() => navigation.navigate("LJF Algorithm", Algorithms[4])}
           >
             <View style={styles.algoBox} backgroundColor="rgb(178, 138, 242)">
               <LinearGradient
@@ -131,7 +131,7 @@ export default function App({ navigation }) {
 
           <TouchableHighlight
             style={styles.algoBox}
-            onPress={() => navigation.navigate("LRTF Algorithm", Algorithms[1])}
+            onPress={() => navigation.navigate("LRTF Algorithm", Algorithms[5])}
           >
             <View style={styles.algoBox} backgroundColor="rgb(255, 170, 34)">
               <LinearGradient
@@ -147,27 +147,10 @@ export default function App({ navigation }) {
             </View>
           </TouchableHighlight>
 
-          {/* <TouchableHighlight
-            style={styles.algoBox}
-            onPress={() => navigation.navigate("SJF Algorithm", Algorithms[1])}
-          >
-            <View style={styles.algoBox} backgroundColor="rgb(159, 233, 159)">
-              <LinearGradient
-                colors={["rgba(44, 139, 44,0.8)", "transparent"]}
-                style={styles.algoBgColor}
-              />
-              <Image
-                style={styles.algoBoxImg}
-                source={require("../assets/algoIcons/percentage.png")}
-              ></Image>
-              <Text style={styles.algoBoxTxt}>HRRN</Text>
-            </View>
-          </TouchableHighlight> */}
-
           <TouchableHighlight
             style={styles.algoBox_P}
             onPress={() =>
-              navigation.navigate("PRIORITY SCHEDULING(P)", Algorithms[1])
+              navigation.navigate("PRIORITY SCHEDULING(P)", Algorithms[6])
             }
           >
             <View style={styles.algoBox_P} backgroundColor="rgb(250, 15, 15)">
@@ -197,7 +180,7 @@ export default function App({ navigation }) {
           <TouchableHighlight
             style={styles.algoBox_P}
             onPress={() =>
-              navigation.navigate("PRIORITY SCHEDULING(NP)", Algorithms[1])
+              navigation.navigate("PRIORITY SCHEDULING(NP)", Algorithms[7])
             }
           >
             <View style={styles.algoBox_P} backgroundColor="rgb(250, 15, 15)">
@@ -221,6 +204,34 @@ export default function App({ navigation }) {
                 }}
               >
                 Priority Scheduling (Non-Preemtive)
+              </Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.algoBox_P}
+            onPress={() => navigation.navigate("Input History")}
+          >
+            <View style={styles.algoBox_P} backgroundColor="rgb(250, 15, 15)">
+              <LinearGradient
+                colors={["rgba(238, 234, 27,0.8)", "transparent"]}
+                style={styles.algoBgColor}
+              />
+              <Image
+                style={styles.algoBoxImg}
+                marginBottom={0}
+                width={100}
+                height={100}
+                source={require("../assets/algoIcons/priority.png")}
+              ></Image>
+              <Text
+                style={{
+                  fontSize: 24,
+                  color: "white",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                Input History
               </Text>
             </View>
           </TouchableHighlight>

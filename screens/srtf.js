@@ -367,6 +367,25 @@ export default class Srtf extends InputTable {
     this.setState({ newState });
   };
   render() {
-    return <InputTable onPress={(state) => this.getAnswer(state)} />;
+    if (
+      typeof this.props.navigation.state.params["from_history"] != "undefined"
+    ) {
+      return (
+        <InputTable
+          onPress={(state) => this.getAnswer(state)}
+          from_history={true}
+          inpt_data={this.props.navigation.state.params}
+          algorithm={"SRTF Algorithm"}
+        />
+      );
+    } else {
+      return (
+        <InputTable
+          onPress={(state) => this.getAnswer(state)}
+          from_history={false}
+          algorithm={"SRTF Algorithm"}
+        />
+      );
+    }
   }
 }

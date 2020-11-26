@@ -9,6 +9,7 @@ import ljf from "../screens/ljf";
 import lrtf from "../screens/lrtf";
 import prio_p from "../screens/prio_p";
 import prio_np from "../screens/prio_np";
+import history from "../models/history";
 const screens = {
   "CPU Scheduling Algorithms": {
     screen: home,
@@ -36,6 +37,9 @@ const screens = {
   },
   "PRIORITY SCHEDULING(NP)": {
     screen: prio_np,
+  },
+  "Input History": {
+    screen: history,
   },
 };
 const screenStack = createStackNavigator(screens);

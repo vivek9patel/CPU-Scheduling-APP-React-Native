@@ -23,7 +23,7 @@ export default class Prio_p extends InputTable {
       });
       // console.log(tuple);
     }
-    console.log(tuple);
+    // console.log(tuple);
     // var tuple = [
     //   { pid: 1, bt1: 1, art: 0, io: 5, bt2: 3, prio: 2 },
     //   { pid: 2, bt1: 3, art: 2, io: 3, bt2: 1, prio: 3 },
@@ -90,7 +90,6 @@ export default class Prio_p extends InputTable {
         que.push(smit);
       } else {
         if (btco[state] === 0) {
-          //	if(i==3){console.log("fuck1");}
           for (var j = 0; j < 1; j++) {
             final_ans.push(tuple[state].pid);
           }
@@ -110,7 +109,6 @@ export default class Prio_p extends InputTable {
             btco[state] = 1;
           }
         } else {
-          //	if(i==3){console.log("fuck2");}
           for (var j = 0; j < 1; j++) {
             final_ans.push(tuple[state].pid);
           }
@@ -131,7 +129,7 @@ export default class Prio_p extends InputTable {
         }
       }
     }
-    console.log(que.length);
+    // console.log(que.length);
     // for (var i = 0; i < 50; i++) {
     //   console.log(i + " " + final_ans[i]);
     // }
@@ -173,8 +171,8 @@ export default class Prio_p extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    console.log(que);
+    // console.log(total_wt / n + " " + total_tat / n);
+    // console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;
@@ -205,7 +203,7 @@ export default class Prio_p extends InputTable {
       });
       // console.log(tuple);
     }
-    console.log(tuple);
+    // console.log(tuple);
 
     // var tuple = [
     //   { pid: 1, bt: 4, art: 0, prio: 2 },
@@ -293,10 +291,10 @@ export default class Prio_p extends InputTable {
         }
       }
     }
-    console.log(que.length);
-    for (var i = 0; i < 50; i++) {
-      console.log(i + " " + final_ans[i]);
-    }
+    // console.log(que.length);
+    // for (var i = 0; i < 50; i++) {
+    //   console.log(i + " " + final_ans[i]);
+    // }
     var cmp_time = [];
     for (var i = 0; i < tuple.length; i++) {
       cmp_time[i] = -1;
@@ -335,8 +333,8 @@ export default class Prio_p extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    console.log(que);
+    // console.log(total_wt / n + " " + total_tat / n);
+    // console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;
@@ -349,11 +347,27 @@ export default class Prio_p extends InputTable {
     this.setState({ newState });
   };
   render() {
-    return (
-      <InputTable
-        onPress={(state) => this.getAnswer(state)}
-        isPriorityAlgorithms={true}
-      />
-    );
+    if (
+      typeof this.props.navigation.state.params["from_history"] != "undefined"
+    ) {
+      return (
+        <InputTable
+          onPress={(state) => this.getAnswer(state)}
+          from_history={true}
+          inpt_data={this.props.navigation.state.params}
+          algorithm={"PRIORITY SCHEDULING(P)"}
+          isPriorityAlgorithms={true}
+        />
+      );
+    } else {
+      return (
+        <InputTable
+          onPress={(state) => this.getAnswer(state)}
+          from_history={false}
+          algorithm={"PRIORITY SCHEDULING(P)"}
+          isPriorityAlgorithms={true}
+        />
+      );
+    }
   }
 }

@@ -10,7 +10,7 @@ export default class Fcfs extends InputTable {
     var newState = state;
     var tuple = [];
     var n = state.tableData.length;
-    console.log(state.tableData);
+    // console.log(state.tableData);
     for (let i = 0; i < n; i++) {
       var tempPid = state.tableData[i][0].substring(1);
       tempPid = parseInt(tempPid) + 1;
@@ -23,7 +23,7 @@ export default class Fcfs extends InputTable {
       });
       // console.log(tuple);
     }
-    console.log(tuple);
+    // console.log(tuple);
 
     // var tuple = [
     //   {pid:1,bt1:6,art:0,io:10,bt2:4},
@@ -129,10 +129,10 @@ export default class Fcfs extends InputTable {
         }
       }
     }
-    console.log(que.length);
-    for (var i = 0; i < 50; i++) {
-      console.log(i + " " + final_ans[i]);
-    }
+    // console.log(que.length);
+    // for (var i = 0; i < 50; i++) {
+    //   console.log(i + " " + final_ans[i]);
+    // }
     var cmp_time = [];
     for (var i = 0; i < tuple.length; i++) {
       cmp_time[i] = -1;
@@ -172,8 +172,8 @@ export default class Fcfs extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    console.log(que);
+    // console.log(total_wt / n + " " + total_tat / n);
+    // console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;
@@ -186,6 +186,7 @@ export default class Fcfs extends InputTable {
     this.setState({ newState });
   };
   getAnswer = (state) => {
+    // console.log(state);
     if (state.isIoEnabled) {
       this.getIoEnabledAnswer(state);
       return;
@@ -295,10 +296,10 @@ export default class Fcfs extends InputTable {
         }
       }
     }
-    console.log(que.length);
-    for (var i = 0; i < 50; i++) {
-      console.log(final_ans[i]);
-    }
+    // console.log(que.length);
+    // for (var i = 0; i < 50; i++) {
+    //   console.log(final_ans[i]);
+    // }
     var cmp_time = [];
     for (var i = 0; i < tuple.length; i++) {
       cmp_time[i] = -1;
@@ -336,8 +337,8 @@ export default class Fcfs extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    console.log(que);
+    // console.log(total_wt / n + " " + total_tat / n);
+    // console.log(que);
     // var que = [];
     // for (let i = 0; i < 50; i++) {
     //   que.push(["-Dummy"]);
@@ -355,6 +356,25 @@ export default class Fcfs extends InputTable {
     this.setState({ newState });
   };
   render() {
-    return <InputTable onPress={(state) => this.getAnswer(state)} />;
+    if (
+      typeof this.props.navigation.state.params["from_history"] != "undefined"
+    ) {
+      return (
+        <InputTable
+          onPress={(state) => this.getAnswer(state)}
+          from_history={true}
+          inpt_data={this.props.navigation.state.params}
+          algorithm={"FCFS Algorithm"}
+        />
+      );
+    } else {
+      return (
+        <InputTable
+          onPress={(state) => this.getAnswer(state)}
+          from_history={false}
+          algorithm={"FCFS Algorithm"}
+        />
+      );
+    }
   }
 }

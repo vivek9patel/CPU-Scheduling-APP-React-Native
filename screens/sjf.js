@@ -27,7 +27,7 @@ export default class Sjf extends InputTable {
     //   { pid: 2, bt1: 9, art: 0, io: 15, bt2: 6 },
     //   { pid: 3, bt1: 3, art: 0, io: 5, bt2: 2 },
     // ];
-    console.log(tuple);
+    // console.log(tuple);
 
     var total_bt = [];
     var artt = [];
@@ -167,8 +167,8 @@ export default class Sjf extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    console.log(que);
+    // console.log(total_wt / n + " " + total_tat / n);
+    // console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;
@@ -217,7 +217,7 @@ export default class Sjf extends InputTable {
       total_btt[i] = tuple[i].bt;
     }
     for (var i = 0; i < n; i++) {
-      console.log(tuple[i].art);
+      // console.log(tuple[i].art);
       artt[i] = tuple[i].art;
     }
 
@@ -273,7 +273,6 @@ export default class Sjf extends InputTable {
         var smit = [];
         que.push(smit);
       } else {
-        //	console.log("a");
         for (var j = 0; j < tuple[state].bt; j++) {
           final_ans.push(tuple[state].pid);
         }
@@ -292,10 +291,10 @@ export default class Sjf extends InputTable {
         tuple[state].bt = 0;
       }
     }
-    console.log(que.length);
-    for (var i = 0; i < 50; i++) {
-      console.log(i + " " + final_ans[i]);
-    }
+    // console.log(que.length);
+    // for (var i = 0; i < 50; i++) {
+    //   console.log(i + " " + final_ans[i]);
+    // }
     var cmp_time = [];
     for (var i = 0; i < tuple.length; i++) {
       cmp_time[i] = -1;
@@ -313,7 +312,7 @@ export default class Sjf extends InputTable {
     var wt = [];
 
     for (var i = 0; i < n; i++) {
-      console.log(cmp_time[i] + " " + artt[i]);
+      // console.log(cmp_time[i] + " " + artt[i]);
       tat[i] = cmp_time[i] - artt[i];
 
       wt[i] = tat[i] - total_btt[i];
@@ -335,8 +334,8 @@ export default class Sjf extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    console.log(que);
+    // console.log(total_wt / n + " " + total_tat / n);
+    // console.log(que);
     // var que = [];
     // for (let i = 0; i < 50; i++) {
     //   que.push(["-Dummy"]);
@@ -353,6 +352,25 @@ export default class Sjf extends InputTable {
     this.setState({ newState });
   };
   render() {
-    return <InputTable onPress={(state) => this.getAnswer(state)} />;
+    if (
+      typeof this.props.navigation.state.params["from_history"] != "undefined"
+    ) {
+      return (
+        <InputTable
+          onPress={(state) => this.getAnswer(state)}
+          from_history={true}
+          inpt_data={this.props.navigation.state.params}
+          algorithm={"SJF Algorithm"}
+        />
+      );
+    } else {
+      return (
+        <InputTable
+          onPress={(state) => this.getAnswer(state)}
+          from_history={false}
+          algorithm={"SJF Algorithm"}
+        />
+      );
+    }
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import {
   StyleSheet,
   View,
@@ -9,7 +9,9 @@ import {
   Switch,
 } from "react-native";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Table, TableWrapper, Row, Cell } from "react-native-table-component";
+
 export default class InputTable extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +35,7 @@ export default class InputTable extends Component {
       isAnimationDone: false,
       isIoEnabled: false,
       time_Quantam: 2, // Time Quantam , Initially '2' (Added for Round robin Algorithm)
+      from_history: false, // If Input Data comes from history
     };
     this.addProcess = this.addProcess.bind(this);
     this.deleteProcess = this.deleteProcess.bind(this);
@@ -43,7 +46,101 @@ export default class InputTable extends Component {
     this.timeQuantamTextInput = this.timeQuantamTextInput.bind(this);
     this.toggleButton = this.toggleButton.bind(this);
   }
+
+  checkForStorageKey = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("storage_key");
+
+      if (jsonValue != null) {
+      } else {
+        AsyncStorage.setItem("storage_key", JSON.stringify(0));
+      }
+    } catch (e) {
+      console.log("Couldn't Check For The Storage_Key Value");
+      console.log(e);
+    }
+  };
+
+  componentDidMount() {
+    if (this.props.from_history == true) {
+      // If the Input comes from History
+      var history_data = this.props.inpt_data;
+      var state = this.state;
+      state.tableData = history_data["tableData"];
+      state.tableHead = history_data["tableHead"];
+      state.totalProcess = history_data["totalProcess"];
+      state.processes = history_data["processes"];
+      state.from_history = true;
+      state.isIoEnabled = history_data["isIoEnabled"];
+      state.time_Quantam = history_data["time_Quantam"];
+      this.setState({ state });
+      // console.log(this.state);
+    }
+    this.checkForStorageKey(); // If there is not storage key Place a storage Key
+  }
+  getDate = () => {
+    let today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    var time =
+      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    today = date + " @ " + time;
+
+    return today;
+  };
+
+  storeData = async (id, data) => {
+    var inpt_data = data;
+    if (id != "storage_key") {
+      inpt_data = { ...inpt_data, date: this.getDate() };
+    }
+
+    try {
+      const jsonValue = id != "storage_key" ? JSON.stringify(inpt_data) : data;
+      //   console.log(jsonValue);
+      await AsyncStorage.setItem(id, jsonValue);
+      //   return jsonValue;
+    } catch (e) {
+      console.log("Couldn't Store the Value");
+      console.log(e);
+    }
+  };
+
   getAnswer = () => {
+    if (this.props.from_history != true) {
+      var inpt_data = {
+        algorithm: this.props.algorithm,
+        totalProcess: this.state.totalProcess,
+        tableHead: this.state.tableHead,
+        tableData: this.state.tableData,
+        processes: this.state.processes,
+        isIoEnabled: this.state.isIoEnabled,
+        time_Quantam: this.state.time_Quantam,
+      };
+      var current_storage_key;
+
+      AsyncStorage.getItem("storage_key", (err, value) => {
+        if (err) {
+          console.log(err);
+        } else {
+          current_storage_key = JSON.parse(value);
+          inpt_data = { ...inpt_data, date: this.getDate() }; // Store the Date
+          AsyncStorage.setItem(
+            current_storage_key.toString(),
+            JSON.stringify(inpt_data)
+          ); // Store the Data
+          AsyncStorage.setItem(
+            "storage_key",
+            JSON.stringify(current_storage_key + 1)
+          ); // Update the Storage Key
+        }
+      });
+    }
+
     (this.state.currentCpuPID = "IDLE"),
       (this.state.currentQueuePID = []),
       (this.state.currentSecond = 0),
@@ -52,6 +149,7 @@ export default class InputTable extends Component {
     this.state.avgtat = parseFloat(this.state.avgtat).toFixed(2);
     this.state.avgwaiting = parseFloat(this.state.avgwaiting).toFixed(2);
   };
+
   showAnimation() {
     setTimeout(() => {
       let total_seconds = this.state.ganntChartArray.length;
@@ -59,7 +157,7 @@ export default class InputTable extends Component {
         this.state.isAnimationDone = true;
       }
 
-      console.log(this.state.currentSecond);
+      // console.log(this.state.currentSecond);
       var temp_cpu_id = this.state.ganntChartArray[this.state.currentSecond];
       if (temp_cpu_id == "/") temp_cpu_id = "IDLE";
       this.setState({
@@ -71,9 +169,11 @@ export default class InputTable extends Component {
       });
     }, 2000);
   }
+
   animationCompleted() {
     alert("Process Completed!");
   }
+
   ganntChart() {
     if (this.state.ganntChartArray.length == 0) {
       alert("No Processes!");
@@ -481,6 +581,7 @@ export default class InputTable extends Component {
       </View>
     );
   }
+
   showAnswer() {
     if (this.state.gotAnswer == true) {
       return (
@@ -540,6 +641,7 @@ export default class InputTable extends Component {
       );
     }
   }
+
   addProcess() {
     const state = this.state;
     (state.currentCpuPID = "IDLE"),
@@ -558,6 +660,7 @@ export default class InputTable extends Component {
     this.state.ganntChartArray = [];
     this.setState({ state });
   }
+
   deleteProcess() {
     const state = this.state;
     if (state.totalProcess == -1) {
@@ -576,6 +679,7 @@ export default class InputTable extends Component {
     this.state.ganntChartArray = [];
     this.setState({ state });
   }
+
   toggleButton() {
     const toggleSwitch = () => {
       var isIoEnabled = this.state.isIoEnabled;
@@ -614,6 +718,7 @@ export default class InputTable extends Component {
         }
       }
       totalProcess = tableData.length - 1;
+      // processes = ["P0"];
       this.setState({
         isIoEnabled,
         tableHead,
@@ -691,7 +796,11 @@ export default class InputTable extends Component {
     const element = (index, cellIndex) => (
       <TextInput
         editable={true}
-        placeholder={"edit"}
+        placeholder={
+          this.state.from_history
+            ? this.state.tableData[index][cellIndex].toString()
+            : "edit"
+        }
         onChangeText={(text) => (this.state.tableData[index][cellIndex] = text)}
         keyboardType="number-pad"
         style={{

@@ -387,11 +387,27 @@ export default class Rr extends InputTable {
     this.setState({ state });
   };
   render() {
-    return (
-      <InputTable
-        onPress={(state) => this.getAnswer(state)}
-        isRoundRobinAlgo={true}
-      />
-    );
+    if (
+      typeof this.props.navigation.state.params["from_history"] != "undefined"
+    ) {
+      return (
+        <InputTable
+          onPress={(state) => this.getAnswer(state)}
+          from_history={true}
+          inpt_data={this.props.navigation.state.params}
+          algorithm={"Round Robin Algorithm"}
+          isRoundRobinAlgo={true}
+        />
+      );
+    } else {
+      return (
+        <InputTable
+          onPress={(state) => this.getAnswer(state)}
+          from_history={false}
+          algorithm={"Round Robin Algorithm"}
+          isRoundRobinAlgo={true}
+        />
+      );
+    }
   }
 }
