@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "cpuSchedulingApp",
+    "slug": "cpuSchedulingApp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/favicon.jpg",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#50c0d8"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "description": ""
+  }
+}
