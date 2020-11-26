@@ -1,8 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import React, { Component } from "react";
+import React from "react";
 import { View, ScrollView, Text, TouchableHighlight } from "react-native";
-
+import { LinearGradient } from "expo-linear-gradient";
 export default class History extends React.Component {
   constructor(props) {
     super(props);
@@ -107,7 +107,20 @@ export default class History extends React.Component {
       historyData.push(
         <TouchableHighlight
           key={i}
-          style={{ width: "90%", marginTop: 10 }}
+          style={{
+            width: "90%",
+            marginTop: 10,
+            borderRadius: 8,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            overflow: "hidden",
+            elevation: 5,
+          }}
           onPress={() =>
             this.props.navigation.navigate(
               allData[i][1]["algorithm"],
@@ -116,9 +129,28 @@ export default class History extends React.Component {
           }
         >
           <View
-            backgroundColor="black"
-            style={{ padding: 10, backgroundColor: "black" }}
+            style={{
+              padding: 10,
+              backgroundColor: "#020b5e",
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              width: "100%",
+              borderRadius: 8,
+              overflow: "hidden",
+            }}
           >
+            <LinearGradient
+              colors={["#004e92", "transparent"]}
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: 0,
+                height: "100%",
+                borderRadius: 8,
+              }}
+            />
             <Text style={{ color: "white" }}>{allData[i][1]["date"]}</Text>
             <Text style={{ color: "white" }}>{allData[i][1]["algorithm"]}</Text>
           </View>
@@ -131,28 +163,43 @@ export default class History extends React.Component {
   render() {
     const state = this.state;
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: "white" }}>
         <View
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            paddingBottom: 30,
           }}
         >
           <TouchableHighlight
-            style={{ width: "90%", marginTop: 10 }}
+            style={{
+              width: "90%",
+              marginTop: 10,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              overflow: "hidden",
+              elevation: 5,
+            }}
             onPress={this.clearHistory}
           >
             <View
               backgroundColor="red"
               style={{
                 padding: 10,
+                backgroundColor: "red",
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "red",
+                width: "100%",
+                borderRadius: 4,
+                overflow: "hidden",
               }}
             >
               <Text style={{ color: "white", fontWeight: "bold" }}>
