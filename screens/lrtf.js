@@ -210,26 +210,24 @@ export default class Lrtf extends InputTable {
       // console.log(tuple);
     }
     // var tuple = [
-    //     {pid:1,bt:2,art:1},
-    //     {pid:2,bt:4,art:2},
-    //     {pid:3,bt:6,art:3},
-    //     {pid:4,bt:8,art:4},
+    //   {pid:1,bt:2,art:1},
+    //   {pid:2,bt:7,art:6},
+    //   {pid:3,bt:5,art:4},
+
     // ];
-    // var tuple_temp = [
-    //     {pid:1,bt:2,art:1},
-    //     {pid:2,bt:4,art:2},
-    //     {pid:3,bt:6,art:3},
-    //     {pid:4,bt:8,art:4},
-    // ];
-    var tuple_i = tuple;
+    var n = tuple.length;
+    var artt = [];
+    var total_btt = [];
+    for (var i = 0; i < tuple.length; i++) {
+      total_btt[i] = tuple[i].bt;
+      artt[i] = tuple[i].art;
+      //	console.log(total_bt[i]);
+    }
+    var tuple_temp = tuple;
     tuple.sort(function (a, b) {
-      if (a.art == b.art) {
-        return b.bt - a.bt;
-      }
       return a.art - b.art;
     });
     tuple.sort();
-    var tuple_t = tuple;
 
     var n = tuple.length;
     var wt = [];
@@ -237,68 +235,63 @@ export default class Lrtf extends InputTable {
     var total_wt = 0;
     var total_tat = 0;
     var rt = [];
-
     for (var i = 0; i < n; i++) {
       rt.push(tuple[i].bt);
     }
-    var complete = 0,
-      t = 0,
-      minm = 9999;
-    var shortest = 0,
-      finish_time;
-    var check = false;
+
     var final_ans = [];
-    // 1 2 3 4
-    // 2 4 6 8
-    var vis = [];
+    var visited = [];
     for (var i = 0; i < tuple.length; i++) {
-      vis[i] = 0;
+      visited[i] = 0;
     }
+
     var que = [];
-    var state = 0;
-    var flag = 0;
+    var btco = [];
+    for (var i = 0; i < n; i++) {
+      btco[i] = 0;
+    }
+
     for (var i = 0; i < 50; i++) {
-      var fl = 0;
-      for (var y = 0; y < tuple.length; y++) {
-        if (vis[y] === 0) {
-          fl = 1;
+      for (var j = 0; j < n; j++) {
+        if (tuple[j].bt <= 0) {
+          visited[j] = 1;
         }
       }
-      var smit = [];
-      if (fl === 0) {
-        final_ans.push("/");
-      } else {
-        for (var j = 0; j < tuple.length; j++) {
-          if (tuple[j].art <= i && vis[j] === 0) {
-            smit.push(tuple[j].pid);
+      var mn = 0;
+      var state = -1;
+      for (var j = 0; j < n; j++) {
+        if (tuple[j].art <= i) {
+          if (tuple[j].bt > mn && visited[j] === 0) {
+            mn = tuple[j].bt;
+            state = j;
           }
         }
-        if (tuple[state].art > i) {
-          final_ans.push("/");
-        } else {
-          final_ans.push(tuple[state].pid);
+      }
 
-          tuple[state].bt--;
-          if (tuple[state].bt === 0) {
-            vis[state] = 1;
-          }
-          var mx = 0;
-          var ind = 0;
-          for (var j = tuple.length - 1; j >= 0; j--) {
-            if (tuple[j].art <= tuple[state].art + 1) {
-              if (tuple[j].bt >= mx && tuple[j].bt > 0) {
-                mx = tuple[j].bt;
-                ind = j;
-              }
+      if (state == -1) {
+        final_ans.push("/");
+        var smit = [];
+        que.push(smit);
+      } else {
+        for (var j = 0; j < 1; j++) {
+          final_ans.push(tuple[state].pid);
+        }
+        tuple[state].bt -= 1;
+
+        for (var g = i; g < i + 1; g++) {
+          var smit = [];
+          for (var y = 0; y < n; y++) {
+            if (tuple[y].art <= g || btco[y] == 1) {
+              smit.push(tuple[y].pid);
             }
           }
-
-          //	console.log(ind);
-
-          state = ind;
+          que.push(smit);
         }
       }
-      que.push(smit);
+    }
+    console.log(que.length);
+    for (var i = 0; i < 50; i++) {
+      console.log(i + " " + final_ans[i]);
     }
     var cmp_time = [];
     for (var i = 0; i < tuple.length; i++) {
@@ -313,23 +306,19 @@ export default class Lrtf extends InputTable {
         }
       }
     }
-    for (var i = 0; i < 50; i++) {
-      console.log(final_ans[i] + " final_ans");
-    }
 
     var wt = [];
 
     for (var i = 0; i < n; i++) {
-      //	console.log(cmp_time[i]+" "+tuple_temp[i].art);
-      tat[i] = cmp_time[i] - tuple_temp[i].art;
-      //	console.log(tat[i]+" "+tuple_temp[i].bt);
-      wt[i] = tat[i] - tuple_temp[i].bt;
-      //console.log(wt[i]);
+      tat[i] = cmp_time[i] - artt[i];
+
+      wt[i] = tat[i] - total_btt[i];
     }
     for (var i = 0; i < n; i++) {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
+    console.log(total_wt / n + " " + total_tat / n);
 
     // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {

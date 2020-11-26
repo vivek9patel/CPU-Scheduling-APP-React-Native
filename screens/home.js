@@ -167,7 +167,7 @@ export default function App({ navigation }) {
               ></Image>
               <Text
                 style={{
-                  fontSize: 24,
+                  fontSize: 22,
                   color: "white",
                   fontWeight: "bold",
                   textAlign: "center",
@@ -197,7 +197,7 @@ export default function App({ navigation }) {
               ></Image>
               <Text
                 style={{
-                  fontSize: 24,
+                  fontSize: 22,
                   color: "white",
                   fontWeight: "bold",
                   textAlign: "center",
@@ -208,24 +208,17 @@ export default function App({ navigation }) {
             </View>
           </TouchableHighlight>
           <TouchableHighlight
-            style={styles.algoBox_P}
+            style={styles.historyBox}
             onPress={() => navigation.navigate("Input History")}
           >
-            <View style={styles.algoBox_P} backgroundColor="rgb(250, 15, 15)">
+            <View style={styles.historyBoxView} backgroundColor="#45B649">
               <LinearGradient
-                colors={["rgba(238, 234, 27,0.8)", "transparent"]}
+                colors={["#DCE35B", "transparent"]}
                 style={styles.algoBgColor}
               />
-              <Image
-                style={styles.algoBoxImg}
-                marginBottom={0}
-                width={100}
-                height={100}
-                source={require("../assets/algoIcons/priority.png")}
-              ></Image>
               <Text
                 style={{
-                  fontSize: 24,
+                  fontSize: 28,
                   color: "white",
                   fontWeight: "bold",
                   textAlign: "center",
@@ -251,6 +244,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "space-evenly",
+    marginBottom: 50,
   },
   algoBox: {
     display: "flex",
@@ -269,6 +263,29 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     overflow: "hidden",
     elevation: 5,
+  },
+  historyBox: {
+    height: 80,
+    width: "90%",
+    borderRadius: 16,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    overflow: "hidden",
+    elevation: 3,
+  },
+  historyBoxView: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 80,
+    width: "100%",
+    borderRadius: 16,
+    overflow: "hidden",
   },
   algoBox_P: {
     display: "flex",
