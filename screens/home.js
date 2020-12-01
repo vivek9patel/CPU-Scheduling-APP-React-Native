@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
-
+import * as Haptics from "expo-haptics";
 export default function App({ navigation }) {
   const Algorithms = [
     { id: "0", name: "FCFS" },
@@ -36,7 +36,10 @@ export default function App({ navigation }) {
         <View style={styles.container}>
           <TouchableHighlight
             style={styles.algoBox}
-            onPress={() => navigation.navigate("FCFS Algorithm", Algorithms[0])}
+            onPress={() => [
+              navigation.navigate("FCFS Algorithm", Algorithms[0]),
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+            ]}
           >
             <View
               style={[styles.algoBox, { backgroundColor: "rgb(5, 116, 95)" }]}
@@ -56,7 +59,10 @@ export default function App({ navigation }) {
 
           <TouchableHighlight
             style={styles.algoBox}
-            onPress={() => navigation.navigate("SJF Algorithm", Algorithms[1])}
+            onPress={() => [
+              navigation.navigate("SJF Algorithm", Algorithms[1]),
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+            ]}
           >
             <View
               style={[styles.algoBox, { backgroundColor: "rgb(25,84,123)" }]}
@@ -76,7 +82,10 @@ export default function App({ navigation }) {
 
           <TouchableHighlight
             style={styles.algoBox}
-            onPress={() => navigation.navigate("SRTF Algorithm", Algorithms[2])}
+            onPress={() => [
+              navigation.navigate("SRTF Algorithm", Algorithms[2]),
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+            ]}
           >
             <View
               style={[styles.algoBox, { backgroundColor: "rgb(1, 95, 223)" }]}
@@ -96,9 +105,10 @@ export default function App({ navigation }) {
 
           <TouchableHighlight
             style={styles.algoBox}
-            onPress={() =>
-              navigation.navigate("Round Robin Algorithm", Algorithms[3])
-            }
+            onPress={() => [
+              navigation.navigate("Round Robin Algorithm", Algorithms[3]),
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+            ]}
           >
             <View
               style={[styles.algoBox, { backgroundColor: "rgb(255, 170, 34)" }]}
@@ -121,7 +131,10 @@ export default function App({ navigation }) {
 
           <TouchableHighlight
             style={styles.algoBox}
-            onPress={() => navigation.navigate("LJF Algorithm", Algorithms[4])}
+            onPress={() => [
+              navigation.navigate("LJF Algorithm", Algorithms[4]),
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+            ]}
           >
             <View
               style={[
@@ -144,7 +157,10 @@ export default function App({ navigation }) {
 
           <TouchableHighlight
             style={styles.algoBox}
-            onPress={() => navigation.navigate("LRTF Algorithm", Algorithms[5])}
+            onPress={() => [
+              navigation.navigate("LRTF Algorithm", Algorithms[5]),
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+            ]}
           >
             <View
               style={[styles.algoBox, { backgroundColor: "rgb(255, 170, 34)" }]}
@@ -164,9 +180,11 @@ export default function App({ navigation }) {
 
           <TouchableHighlight
             style={styles.algoBox_P}
-            onPress={() =>
-              navigation.navigate("PRIORITY SCHEDULING(P)", Algorithms[6])
-            }
+            onPress={() => [
+              navigation.navigate("PRIORITY SCHEDULING(P)", Algorithms[6]),
+              ,
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+            ]}
           >
             <View
               style={[
@@ -199,9 +217,10 @@ export default function App({ navigation }) {
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.algoBox_P}
-            onPress={() =>
-              navigation.navigate("PRIORITY SCHEDULING(NP)", Algorithms[7])
-            }
+            onPress={() => [
+              navigation.navigate("PRIORITY SCHEDULING(NP)", Algorithms[7]),
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+            ]}
           >
             <View
               style={[
@@ -234,7 +253,10 @@ export default function App({ navigation }) {
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.historyBox}
-            onPress={() => navigation.navigate("Input History")}
+            onPress={() => [
+              navigation.navigate("Input History"),
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+            ]}
           >
             <View
               style={[styles.historyBoxView, { backgroundColor: "#45B649" }]}

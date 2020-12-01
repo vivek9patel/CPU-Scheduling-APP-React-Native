@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { View, ScrollView, Text, TouchableHighlight } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import * as Haptics from "expo-haptics";
 export default class History extends React.Component {
   constructor(props) {
     super(props);
@@ -89,6 +90,7 @@ export default class History extends React.Component {
   clearHistory = async () => {
     try {
       await AsyncStorage.clear();
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       alert("History Cleared!");
       this.setState({ allKeys: [] });
     } catch (e) {

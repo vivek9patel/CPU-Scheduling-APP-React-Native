@@ -11,6 +11,7 @@ import {
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Table, TableWrapper, Row, Cell } from "react-native-table-component";
+import * as Haptics from "expo-haptics";
 
 export default class InputTable extends Component {
   constructor(props) {
@@ -171,12 +172,14 @@ export default class InputTable extends Component {
   }
 
   animationCompleted() {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     alert("Process Completed!");
   }
 
   ganntChart() {
     if (this.state.ganntChartArray.length == 0) {
-      alert("No Processes!");
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      alert("Add Processes & Press Evaluate First!");
       return null;
     }
 
@@ -664,6 +667,7 @@ export default class InputTable extends Component {
   deleteProcess() {
     const state = this.state;
     if (state.totalProcess == -1) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       alert("Table is Empty!");
       return null;
     }
@@ -682,6 +686,7 @@ export default class InputTable extends Component {
 
   toggleButton() {
     const toggleSwitch = () => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       var isIoEnabled = this.state.isIoEnabled;
       var tableHead = this.state.tableHead;
       var tableData = this.state.tableData;
