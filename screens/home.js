@@ -38,7 +38,9 @@ export default function App({ navigation }) {
             style={styles.algoBox}
             onPress={() => navigation.navigate("FCFS Algorithm", Algorithms[0])}
           >
-            <View style={styles.algoBox} backgroundColor="rgb(5, 116, 95)">
+            <View
+              style={[styles.algoBox, { backgroundColor: "rgb(5, 116, 95)" }]}
+            >
               <LinearGradient
                 colors={["rgba(59,223,210,0.8)", "transparent"]}
                 style={styles.algoBgColor}
@@ -56,7 +58,9 @@ export default function App({ navigation }) {
             style={styles.algoBox}
             onPress={() => navigation.navigate("SJF Algorithm", Algorithms[1])}
           >
-            <View style={styles.algoBox} backgroundColor="rgb(25,84,123)">
+            <View
+              style={[styles.algoBox, { backgroundColor: "rgb(25,84,123)" }]}
+            >
               <LinearGradient
                 colors={["rgba(255, 170, 34,0.8)", "transparent"]}
                 style={styles.algoBgColor}
@@ -74,7 +78,9 @@ export default function App({ navigation }) {
             style={styles.algoBox}
             onPress={() => navigation.navigate("SRTF Algorithm", Algorithms[2])}
           >
-            <View style={styles.algoBox} backgroundColor="rgb(1, 95, 223)">
+            <View
+              style={[styles.algoBox, { backgroundColor: "rgb(1, 95, 223)" }]}
+            >
               <LinearGradient
                 colors={["rgba(30, 210, 252,0.8)", "transparent"]}
                 style={styles.algoBgColor}
@@ -94,7 +100,9 @@ export default function App({ navigation }) {
               navigation.navigate("Round Robin Algorithm", Algorithms[3])
             }
           >
-            <View style={styles.algoBox} backgroundColor="rgb(250, 5, 17)">
+            <View
+              style={[styles.algoBox, { backgroundColor: "rgb(255, 170, 34)" }]}
+            >
               <LinearGradient
                 colors={["rgba(182, 10, 250, 0.95)", "transparent"]}
                 style={styles.algoBgColor}
@@ -115,7 +123,12 @@ export default function App({ navigation }) {
             style={styles.algoBox}
             onPress={() => navigation.navigate("LJF Algorithm", Algorithms[4])}
           >
-            <View style={styles.algoBox} backgroundColor="rgb(178, 138, 242)">
+            <View
+              style={[
+                styles.algoBox,
+                { backgroundColor: "rgb(178, 138, 242)" },
+              ]}
+            >
               <LinearGradient
                 colors={["rgba(59, 31, 165,0.8)", "transparent"]}
                 style={styles.algoBgColor}
@@ -133,7 +146,9 @@ export default function App({ navigation }) {
             style={styles.algoBox}
             onPress={() => navigation.navigate("LRTF Algorithm", Algorithms[5])}
           >
-            <View style={styles.algoBox} backgroundColor="rgb(255, 170, 34)">
+            <View
+              style={[styles.algoBox, { backgroundColor: "rgb(255, 170, 34)" }]}
+            >
               <LinearGradient
                 colors={["rgba(121, 74, 0,0.8)", "transparent"]}
                 style={styles.algoBgColor}
@@ -153,7 +168,12 @@ export default function App({ navigation }) {
               navigation.navigate("PRIORITY SCHEDULING(P)", Algorithms[6])
             }
           >
-            <View style={styles.algoBox_P} backgroundColor="rgb(250, 15, 15)">
+            <View
+              style={[
+                styles.algoBox_P,
+                { backgroundColor: "rgb(250, 15, 15)" },
+              ]}
+            >
               <LinearGradient
                 colors={["rgba(238, 234, 27,0.8)", "transparent"]}
                 style={styles.algoBgColor}
@@ -183,7 +203,12 @@ export default function App({ navigation }) {
               navigation.navigate("PRIORITY SCHEDULING(NP)", Algorithms[7])
             }
           >
-            <View style={styles.algoBox_P} backgroundColor="rgb(250, 15, 15)">
+            <View
+              style={[
+                styles.algoBox_P,
+                { backgroundColor: "rgb(250, 15, 15)" },
+              ]}
+            >
               <LinearGradient
                 colors={["rgba(238, 234, 27,0.8)", "transparent"]}
                 style={styles.algoBgColor}
@@ -211,7 +236,9 @@ export default function App({ navigation }) {
             style={styles.historyBox}
             onPress={() => navigation.navigate("Input History")}
           >
-            <View style={styles.historyBoxView} backgroundColor="#45B649">
+            <View
+              style={[styles.historyBoxView, { backgroundColor: "#45B649" }]}
+            >
               <LinearGradient
                 colors={["#DCE35B", "transparent"]}
                 style={styles.algoBgColor}
