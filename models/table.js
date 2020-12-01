@@ -763,7 +763,7 @@ export default class InputTable extends Component {
           marginBottom: 10,
         }}
       >
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>Time Quantam :</Text>
+        <Text style={{ fontSize: 18, fontWeight: "bold" }}>Time Quantum:</Text>
         <TextInput
           editable={true}
           placeholder={this.state.time_Quantam.toString()}

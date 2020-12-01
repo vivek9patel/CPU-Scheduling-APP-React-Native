@@ -29,13 +29,13 @@ export default class Rr extends InputTable {
     //   {pid:2,bt1:9,art:2,io:15,bt2:6},
     //   {pid:3,bt1:3,art:4,io:5,bt2:2},
     // ];
-
+    var n = tuple.length;
     var total_bt = [];
     var artt = [];
     var total_btt = [];
     for (var i = 0; i < tuple.length; i++) {
       total_bt[i] = tuple[i].bt1 + tuple[i].io + tuple[i].bt2;
-      total_btt[i] = total_bt[i];
+      total_btt[i] = total_bt[i] - tuple[i].io;
       artt[i] = tuple[i].art;
     }
     var tuple_temp = tuple;
@@ -43,31 +43,24 @@ export default class Rr extends InputTable {
       return a.art - b.art;
     });
     tuple.sort();
-
-    var n = tuple.length;
-    var wt = [];
-    var tat = [];
-    var total_wt = 0;
-    var total_tat = 0;
-    var rt = [];
-    for (var i = 0; i < n; i++) {
-      rt.push(tuple[i].bt);
-    }
-
+    var wt = []; //waiting time
+    var tat = []; //turnaround time
+    var total_wt = 0; //total waiting time
+    var total_tat = 0; //total turnaround time
     var final_ans = [];
     var visited = [];
     var main_que = [];
     for (var i = 0; i < tuple.length; i++) {
       visited[i] = 0;
     }
-    var tq = 3;
+    var tq = state.time_Quantam;
     var que = [];
     var btco = [];
     for (var i = 0; i < n; i++) {
       btco[i] = 0;
     }
-    var last = 1000;
-    for (var i = 0; i < 50; i++) {
+    var last = 10001;
+    for (var i = 0; i < 10000; i++) {
       for (var j = 0; j < n; j++) {
         if (tuple[j].art <= i && visited[j] === 0) {
           var flag = 0;
@@ -79,17 +72,15 @@ export default class Rr extends InputTable {
           if (flag === 0) main_que.push(j);
         }
       }
-      if (last != 1000) {
+      if (last != 10001) {
         main_que.push(last);
       }
-
       var state = -1;
       if (main_que.length !== 0) {
         state = main_que[0];
         visited[state] = 1;
       }
       main_que.shift();
-
       if (state == -1) {
         final_ans.push("/");
         var smit = [];
@@ -97,7 +88,6 @@ export default class Rr extends InputTable {
       } else {
         if (btco[state] === 0) {
           var to = Math.min(tuple[state].bt1, tq);
-          //	console.log(to);
           for (var j = 0; j < to; j++) {
             final_ans.push(tuple[state].pid);
           }
@@ -105,7 +95,7 @@ export default class Rr extends InputTable {
           tuple[state].bt1 -= to;
           if (tuple[state].bt1 === 0) {
             btco[state] = 1;
-            last = 1000;
+            last = 10001;
             tuple[state].art = i + to + tuple[state].io;
             visited[state] = 0;
           }
@@ -118,11 +108,8 @@ export default class Rr extends InputTable {
             }
             que.push(smit);
           }
-          //	console.log(last);
           i += to - 1;
         } else {
-          //	console.log(i + " "+ state);
-
           var to = Math.min(tuple[state].bt2, tq);
           for (var j = 0; j < to; j++) {
             final_ans.push(tuple[state].pid);
@@ -131,8 +118,8 @@ export default class Rr extends InputTable {
           tuple[state].bt2 -= to;
           if (tuple[state].bt2 === 0) {
             btco[state] = 1;
-            last = 1000;
-            tuple[state].art = 1000;
+            last = 10001;
+            tuple[state].art = 10001;
             visited[state] = 1;
           }
           for (var j = i; j < i + to; j++) {
@@ -227,58 +214,84 @@ export default class Rr extends InputTable {
       // console.log(tuple);
     }
     // var tuple = [
-    //   { pid: 1, bt: 5, art: 0 },
-    //   { pid: 2, bt: 3, art: 1 },
-    //   { pid: 3, bt: 1, art: 2 },
-    //   { pid: 4, bt: 2, art: 3 },
-    //   { pid: 5, bt: 3, art: 4 },
+    //   {
+    //     pid: 1,
+    //     bt: 5,
+    //     art: 0,
+    //   },
+    //   {
+    //     pid: 2,
+    //     bt: 3,
+    //     art: 1,
+    //   },
+    //   {
+    //     pid: 3,
+    //     bt: 1,
+    //     art: 2,
+    //   },
+    //   {
+    //     pid: 4,
+    //     bt: 2,
+    //     art: 3,
+    //   },
+    //   {
+    //     pid: 5,
+    //     bt: 3,
+    //     art: 4,
+    //   },
     // ];
     // var tuple_temp = [
-    //   { pid: 1, bt: 5, art: 0 },
-    //   { pid: 2, bt: 3, art: 1 },
-    //   { pid: 3, bt: 1, art: 2 },
-    //   { pid: 4, bt: 2, art: 3 },
-    //   { pid: 5, bt: 3, art: 4 },
+    //   {
+    //     pid: 1,
+    //     bt: 5,
+    //     art: 0,
+    //   },
+    //   {
+    //     pid: 2,
+    //     bt: 3,
+    //     art: 1,
+    //   },
+    //   {
+    //     pid: 3,
+    //     bt: 1,
+    //     art: 2,
+    //   },
+    //   {
+    //     pid: 4,
+    //     bt: 2,
+    //     art: 3,
+    //   },
+    //   {
+    //     pid: 5,
+    //     bt: 3,
+    //     art: 4,
+    //   },
     // ];
-    var tq = parseInt(state.time_Quantam);
-    var tuple_temp = tuple;
-    // console.log(tuple, tuple_temp);
-    n = tuple.length;
-    var wt = [];
-    var tat = [];
-    var total_wt = 0;
-    var total_tat = 0;
-    var rt = [];
-    for (var i = 0; i < n; i++) {
-      rt.push(tuple[i].bt);
-    }
-    var complete = 0,
-      t = 0,
-      minm = 9999;
-    var shortest = 0,
-      finish_time;
-    var check = false;
-    var final_ans = [];
-    // 1 2 3 4
-    // 2 4 6 8
+    var tq = state.time_Quantam;
+    var n = tuple.length;
+    var wt = []; // waiting time
+    var tat = []; // turnaround time
+    var total_wt = 0; //total waiting time
+    var total_tat = 0; //total turnaround time
+    var final_ans = []; // grannt chart
     var vis = [];
     for (var i = 0; i < tuple.length; i++) {
       vis[i] = 0;
     }
-    var store = [];
-    var vis = [];
-    for (var j = 0; j < n; j++) {
-      vis[j] = 0;
+    var rt = [];
+    for (var i = 0; i < n; i++) {
+      rt.push(tuple[i].bt);
     }
+    var store = [];
     var visited = [];
     for (var i = 0; i < n; i++) {
       visited[i] = 0;
     }
-    var que = [];
+    var que = []; //READY QUEUE
     var fl = 0;
     var val = 0;
     var count = 0;
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < 10000; i++) {
       count++;
       for (var j = 0; j < n; j++) {
         if (tuple[j].art <= i && vis[j] != 1) {
@@ -289,7 +302,6 @@ export default class Rr extends InputTable {
       if (fl == 1 && tuple[val].bt > 0) {
         store.push(val);
       }
-
       if (store.length === 0) {
         var smit = [];
         for (var h = 0; h < n; h++) {
@@ -316,20 +328,17 @@ export default class Rr extends InputTable {
         for (var t = 0; t < Math.min(brt, tq); t++) {
           final_ans.push(tuple[val].pid);
         }
-
-        brt -= tq;
         tuple[val].bt -= tq;
         if (tuple[val].bt <= 0) {
           visited[val] = 1;
-          console.log(val);
         }
-        i += tq - 1;
+        i += Math.min(brt, tq) - 1;
       }
     }
     for (var i = 0; i < 50; i++) {
-      console.log("que " + que[i]);
+      console.log(final_ans[i]);
     }
-    var cmp_time = [];
+    var cmp_time = []; //completion time
     for (var i = 0; i < tuple.length; i++) {
       cmp_time[i] = -1;
     }
@@ -341,22 +350,14 @@ export default class Rr extends InputTable {
         }
       }
     }
-
-    var wt = [];
-
     for (var i = 0; i < n; i++) {
-      //	console.log(cmp_time[i]+" "+tuple[i].art);
       tat[i] = cmp_time[i] - tuple[i].art;
-      //	console.log(tat[i]+" "+rt[i]);
       wt[i] = tat[i] - rt[i];
-      //	console.log(wt[i]);
     }
     for (var i = 0; i < n; i++) {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-
-    //console.log(total_wt/n+" "+total_tat/n);
     // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {
       if (final_ans[i] != "/") {
