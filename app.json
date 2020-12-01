@@ -4,7 +4,7 @@
     "slug": "CPU-Scheduling-App-Operating-System",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/favicon.jpg",
+    "icon": "./assets/favicon_main.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
