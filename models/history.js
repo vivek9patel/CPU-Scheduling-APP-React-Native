@@ -90,7 +90,7 @@ export default class History extends React.Component {
   clearHistory = async () => {
     try {
       await AsyncStorage.clear();
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       alert("History Cleared!");
       this.setState({ allKeys: [] });
     } catch (e) {
