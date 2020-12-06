@@ -34,9 +34,7 @@ export default class History extends React.Component {
 
     try {
       const jsonValue = JSON.stringify(inpt_data);
-      //   console.log(jsonValue);
       await AsyncStorage.setItem(id, jsonValue);
-      //   return jsonValue;
     } catch (e) {
       console.log("Couldn't Store the Value");
       console.log(e);
@@ -46,10 +44,8 @@ export default class History extends React.Component {
   getData = async (id) => {
     try {
       const jsonValue = await AsyncStorage.getItem(id);
-      //   console.log(jsonValue);
       if (jsonValue != null) {
         let inpt_data = JSON.parse(jsonValue);
-        // console.log(inpt_data);
         inpt_data = { ...inpt_data, from_history: true };
         return jsonValue;
       } else {
@@ -68,10 +64,8 @@ export default class History extends React.Component {
       const allKeys = await AsyncStorage.getAllKeys();
       const result = await AsyncStorage.multiGet(allKeys);
 
-      //   console.log(allKeys, result);
       let final_data = [];
       for (let i = 0; i < result.length; i++) {
-        // console.log(allKeys[i]);
         if (allKeys[i] == "storage_key") continue;
         result[i][1] = JSON.parse(result[i][1]);
         result[i][1] = { ...result[i][1], from_history: true };

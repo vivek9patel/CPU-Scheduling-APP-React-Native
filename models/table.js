@@ -75,7 +75,6 @@ export default class InputTable extends Component {
       state.isIoEnabled = history_data["isIoEnabled"];
       state.time_Quantam = history_data["time_Quantam"];
       this.setState({ state });
-      // console.log(this.state);
     }
     this.checkForStorageKey(); // If there is not storage key Place a storage Key
   }
@@ -102,7 +101,6 @@ export default class InputTable extends Component {
 
     try {
       const jsonValue = id != "storage_key" ? JSON.stringify(inpt_data) : data;
-      //   console.log(jsonValue);
       await AsyncStorage.setItem(id, jsonValue);
       //   return jsonValue;
     } catch (e) {
@@ -158,7 +156,6 @@ export default class InputTable extends Component {
         this.state.isAnimationDone = true;
       }
 
-      // console.log(this.state.currentSecond);
       var temp_cpu_id = this.state.ganntChartArray[this.state.currentSecond];
       if (temp_cpu_id == "/") temp_cpu_id = "IDLE";
       this.setState({
