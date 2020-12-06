@@ -188,10 +188,12 @@ export default class Lrtf extends InputTable {
     });
     tuple.sort();
     var n = tuple.length;
-    var wt = [];
-    var tat = [];
-    var total_wt = 0;
-    var total_tat = 0;
+    var wt = []; //wating time
+    var tat = []; //turnaround time
+    var total_wt = 0; // total wating time
+    var total_tat = 0; // total turnaround time
+    var final_ans = []; // grannt chart
+    
     var rt = [];
     for (var i = 0; i < n; i++) {
       rt.push(tuple[i].bt);
@@ -266,7 +268,7 @@ export default class Lrtf extends InputTable {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-    console.log(total_wt / n + " " + total_tat / n);
+   
 
     // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {

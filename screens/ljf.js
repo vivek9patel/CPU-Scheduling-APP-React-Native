@@ -34,11 +34,11 @@ export default class Ljf extends InputTable {
       return a.art - b.art;
     });
     tuple.sort();
-    var wt = [];
-    var tat = [];
-    var total_wt = 0;
-    var total_tat = 0;
-    var final_ans = [];
+    var wt = []; //wating time
+    var tat = []; //turnaround time
+    var total_wt = 0; // total wating time
+    var total_tat = 0; // total turnaround time
+    var final_ans = []; // grannt chart
     var visited = [];
     for (var i = 0; i < tuple.length; i++) {
       visited[i] = 0;
