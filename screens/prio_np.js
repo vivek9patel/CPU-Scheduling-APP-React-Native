@@ -4,7 +4,6 @@ import InputTable from "../models/table";
 export default class Prio_np extends InputTable {
   constructor(props) {
     super(props);
-    // this.getAnswer = this.getAnswer.bind(this);
   }
   getIoEnabledAnswer = (state) => {
     var newState = state;
@@ -21,15 +20,7 @@ export default class Prio_np extends InputTable {
         bt2: parseInt(state.tableData[i][4]),
         prio: parseInt(state.tableData[i][5]),
       });
-      // console.log(tuple);
     }
-    // console.log(tuple);
-
-    // var tuple = [
-    //   {pid:1,bt1:6,art:0,io:10,bt2:4,prio:2},
-    //   {pid:2,bt1:9,art:2,io:15,bt2:6,prio:1},
-    //   {pid:3,bt1:3,art:3,io:5,bt2:2,prio:3},
-    // ];
     var n = tuple.length;
     var total_bt = [];
     var artt = [];
@@ -150,8 +141,6 @@ export default class Prio_np extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    // console.log(total_wt / n + " " + total_tat / n);
-    // console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;
@@ -181,18 +170,7 @@ export default class Prio_np extends InputTable {
         art: parseInt(state.tableData[i][1]),
         prio: parseInt(state.tableData[i][3]),
       });
-      // console.log(tuple);
     }
-    // console.log(tuple);
-    // var tuple = [
-    //   {pid:1,bt:4,art:0,prio:2},
-    //   {pid:2,bt:2,art:1,prio:4},
-    //   {pid:3,bt:3,art:2,prio:6},
-    //   {pid:4,bt:5,art:3,prio:10},
-    //   {pid:5,bt:1,art:4,prio:8},
-    //   {pid:6,bt:4,art:5,prio:12},
-    //   {pid:7,bt:6,art:6,prio:9},
-    // ];
     var n = tuple.length;
     var total_btt = [];
     var arrt = [];
@@ -282,7 +260,6 @@ export default class Prio_np extends InputTable {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-    console.log(total_wt / n + " " + total_tat / n);
     // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {
       if (final_ans[i] != "/") {
@@ -295,8 +272,6 @@ export default class Prio_np extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    // console.log(total_wt / n + " " + total_tat / n);
-    // console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;

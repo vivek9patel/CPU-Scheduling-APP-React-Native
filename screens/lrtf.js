@@ -19,15 +19,7 @@ export default class Lrtf extends InputTable {
         io: parseInt(state.tableData[i][3]),
         bt2: parseInt(state.tableData[i][4]),
       });
-      // console.log(tuple);
     }
-
-    // var tuple = [
-    //   {pid:1,bt1:3,art:0,io:2,bt2:2},
-    //   {pid:2,bt1:2,art:0,io:4,bt2:1},
-    //   {pid:3,bt1:1,art:2,io:3,bt2:2},
-    //   {pid:4,bt1:2,art:5,io:2,bt2:1},
-    // ];
     var total_bt = [];
     var artt = [];
     var total_btt = [];
@@ -138,8 +130,6 @@ export default class Lrtf extends InputTable {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-    console.log(total_wt / n + " " + total_tat / n);
-
     // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {
       if (final_ans[i] != "/") {
@@ -152,8 +142,6 @@ export default class Lrtf extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;
@@ -187,13 +175,7 @@ export default class Lrtf extends InputTable {
         bt: parseInt(state.tableData[i][2]),
         art: parseInt(state.tableData[i][1]),
       });
-      // console.log(tuple);
     }
-    // var tuple = [
-    //   {pid:1,bt:2,art:1},
-    //   {pid:2,bt:7,art:6},
-    //   {pid:3,bt:5,art:4},
-    // ];
     var n = tuple.length;
     var artt = [];
     var total_btt = [];
@@ -301,10 +283,6 @@ export default class Lrtf extends InputTable {
     }
     console.log(total_wt / n + " " + total_tat / n);
     console.log(que);
-    // var que = [];
-    // for (let i = 0; i < 50; i++) {
-    //   que.push(["-Dummy"]);
-    // }
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;

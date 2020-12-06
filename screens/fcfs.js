@@ -3,13 +3,11 @@ import InputTable from "../models/table";
 export default class Fcfs extends InputTable {
   constructor(props) {
     super(props);
-    // this.getAnswer = this.getAnswer.bind(this);
   }
   getIoEnabledAnswer = (state) => {
     var newState = state;
     var tuple = [];
     var n = state.tableData.length;
-    // console.log(state.tableData);
     for (let i = 0; i < n; i++) {
       var tempPid = state.tableData[i][0].substring(1);
       tempPid = parseInt(tempPid) + 1;
@@ -20,14 +18,8 @@ export default class Fcfs extends InputTable {
         io: parseInt(state.tableData[i][3]),
         bt2: parseInt(state.tableData[i][4]),
       });
-      // console.log(tuple);
+     
     }
-    // console.log(tuple);
-    /*var tuple = [
-        {pid:1,bt1:6,art:0,io:10,bt2:4},
-        {pid:2,bt1:9,art:0,io:15,bt2:6},
-        {pid:3,bt1:3,art:0,io:5,bt2:2},
-      ];*/
     var n = tuple.length;
     var total_bt = []; // total burst time
     var artt = []; // temp. arrival time
@@ -114,9 +106,6 @@ export default class Fcfs extends InputTable {
         }
       }
     }
-    for (var i = 0; i < 50; i++) {
-      console.log(i + " " + final_ans[i]);
-    }
     var cmp_time = []; //COMPLETION TIME
     for (var i = 0; i < tuple.length; i++) {
       cmp_time[i] = -1;
@@ -137,22 +126,16 @@ export default class Fcfs extends InputTable {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    // console.log(total_wt/n + " " + total_tat/n);
-    // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {
       if (final_ans[i] != "/") {
         final_ans[i]--;
         final_ans[i] = "P" + final_ans[i].toString();
       }
     }
-    // Removing '/' from the back of the array
     for (var i = final_ans.length - 1; i >= 0; i--) {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    // console.log(total_wt / n + " " + total_tat / n);
-    // console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;
@@ -167,7 +150,6 @@ export default class Fcfs extends InputTable {
     });
   };
   getAnswer = (state) => {
-    // console.log(state);
     if (state.isIoEnabled) {
       this.getIoEnabledAnswer(state);
       return;
@@ -189,13 +171,7 @@ export default class Fcfs extends InputTable {
         bt: parseInt(state.tableData[i][2]),
         art: parseInt(state.tableData[i][1]),
       });
-      // console.log(tuple);
     }
-    // var tuple = [
-    //   { pid: 1, bt: 5, art: 2 },
-    //   { pid: 2, bt: 1000, art: 3 },
-    //   { pid: 3, bt: 100, art: 2 },
-    // ];
     tuple.sort(function (a, b) {
       if (a.art == b.art) {
         return a.bt - b.bt;
@@ -277,37 +253,24 @@ export default class Fcfs extends InputTable {
       }
     }
     for (var i = 0; i < n; i++) {
-      //console.log("cm "+cmp_time[i]);
-    }
-    for (var i = 0; i < n; i++) {
-      //console.log(cmp_time[i]+" cm "+tuple_temp[i].art);
+     
       tat[i] = cmp_time[i] - tuple_temp[i].art;
-      //console.log(tat[i]+" tat "+tuple_temp[i].bt);
       wt[i] = tat[i] - tuple_temp[i].bt;
-      console.log(tat[i] + " " + wt[i]);
     }
     for (var i = 0; i < n; i++) {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-    // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {
       if (final_ans[i] != "/") {
         final_ans[i]--;
         final_ans[i] = "P" + final_ans[i].toString();
       }
     }
-    // Removing '/' from the back of the array
     for (var i = final_ans.length - 1; i >= 0; i--) {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    // console.log(total_wt / n + " " + total_tat / n);
-    // console.log(que);
-    // var que = [];
-    // for (let i = 0; i < 50; i++) {
-    //   que.push(["-Dummy"]);
-    // }
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;

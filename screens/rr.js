@@ -23,12 +23,6 @@ export default class Rr extends InputTable {
       // console.log(tuple);
     }
     console.log(tuple);
-
-    // var tuple = [
-    //   {pid:1,bt1:6,art:0,io:10,bt2:4},
-    //   {pid:2,bt1:9,art:2,io:15,bt2:6},
-    //   {pid:3,bt1:3,art:4,io:5,bt2:2},
-    // ];
     var n = tuple.length;
     var total_bt = [];
     var artt = [];
@@ -213,60 +207,6 @@ export default class Rr extends InputTable {
       });
       // console.log(tuple);
     }
-    // var tuple = [
-    //   {
-    //     pid: 1,
-    //     bt: 5,
-    //     art: 0,
-    //   },
-    //   {
-    //     pid: 2,
-    //     bt: 3,
-    //     art: 1,
-    //   },
-    //   {
-    //     pid: 3,
-    //     bt: 1,
-    //     art: 2,
-    //   },
-    //   {
-    //     pid: 4,
-    //     bt: 2,
-    //     art: 3,
-    //   },
-    //   {
-    //     pid: 5,
-    //     bt: 3,
-    //     art: 4,
-    //   },
-    // ];
-    // var tuple_temp = [
-    //   {
-    //     pid: 1,
-    //     bt: 5,
-    //     art: 0,
-    //   },
-    //   {
-    //     pid: 2,
-    //     bt: 3,
-    //     art: 1,
-    //   },
-    //   {
-    //     pid: 3,
-    //     bt: 1,
-    //     art: 2,
-    //   },
-    //   {
-    //     pid: 4,
-    //     bt: 2,
-    //     art: 3,
-    //   },
-    //   {
-    //     pid: 5,
-    //     bt: 3,
-    //     art: 4,
-    //   },
-    // ];
     var tq = state.time_Quantam;
     var n = tuple.length;
     var wt = []; // waiting time
@@ -372,10 +312,6 @@ export default class Rr extends InputTable {
     }
     console.log(total_wt / n + " " + total_tat / n);
     console.log(que);
-    // var que = [];
-    // for (let i = 0; i < 50; i++) {
-    //   que.push(["-Dummy"]);
-    // }
     state.queueAnimationArray = que;
     state.tatarr = tat;
     state.waitingarr = wt;

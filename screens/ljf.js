@@ -20,14 +20,8 @@ export default class Ljf extends InputTable {
         io: parseInt(state.tableData[i][3]),
         bt2: parseInt(state.tableData[i][4]),
       });
-      // console.log(tuple);
     }
     console.log(tuple);
-    // var tuple = [
-    //   {pid:1,bt1:6,art:0,io:10,bt2:4},
-    //   {pid:2,bt1:9,art:0,io:15,bt2:6},
-    //   {pid:3,bt1:3,art:0,io:5,bt2:2},
-    // ];
     var total_bt = [];
     var artt = [];
     var total_btt = [];
@@ -136,7 +130,6 @@ export default class Ljf extends InputTable {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-    console.log(total_wt / n + " " + total_tat / n);
     // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {
       if (final_ans[i] != "/") {
@@ -144,13 +137,10 @@ export default class Ljf extends InputTable {
         final_ans[i] = "P" + final_ans[i].toString();
       }
     }
-    // Removing '/' from the back of the array
     for (var i = final_ans.length - 1; i >= 0; i--) {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;
@@ -184,14 +174,9 @@ export default class Ljf extends InputTable {
         bt: parseInt(state.tableData[i][2]),
         art: parseInt(state.tableData[i][1]),
       });
-      // console.log(tuple);
+     
     }
     console.log(tuple);
-    // var tuple = [
-    //   {pid:1,bt:2,art:1},
-    //   {pid:2,bt:5,art:6},
-    //   {pid:3,bt:3,art:4},
-    // ];
     var n = tuple.length;
     var total_btt = [];
     var artt = [];
@@ -302,7 +287,6 @@ export default class Ljf extends InputTable {
     newState.ganntChartArray = final_ans;
     newState.gotAnswer = true;
     newState.isChartGenerated = false;
-    // console.log(state);
     this.setState({ newState });
   };
   render() {

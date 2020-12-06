@@ -4,7 +4,6 @@ import InputTable from "../models/table";
 export default class Srtf extends InputTable {
   constructor(props) {
     super(props);
-    // this.getAnswer = this.getAnswer.bind(this);
   }
   getIoEnabledAnswer = (state) => {
     var newState = state;
@@ -22,13 +21,6 @@ export default class Srtf extends InputTable {
       });
       // console.log(tuple);
     }
-
-    // var tuple = [
-    //   {pid:1,bt1:3,art:0,io:2,bt2:2},
-    //   {pid:2,bt1:2,art:0,io:4,bt2:1},
-    //   {pid:3,bt1:1,art:2,io:3,bt2:2},
-    //   {pid:4,bt1:2,art:5,io:2,bt2:1},
-    // ];
     var n = tuple.length;
     var total_bt = [];
     var artt = [];
@@ -141,7 +133,6 @@ export default class Srtf extends InputTable {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-    console.log(total_wt / n + " " + total_tat / n);
 
     // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {
@@ -192,12 +183,6 @@ export default class Srtf extends InputTable {
       });
       // console.log(tuple);
     }
-    // var tuple = [
-    //   {pid:1,bt:2,art:1},
-    //   {pid:2,bt:7,art:6},
-    //   {pid:3,bt:5,art:4},
-
-    // ];
     var n = tuple.length;
     var artt = [];
     var total_btt = [];
@@ -284,7 +269,6 @@ export default class Srtf extends InputTable {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-    console.log(total_wt / n + " " + total_tat / n);
     // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {
       if (final_ans[i] != "/") {

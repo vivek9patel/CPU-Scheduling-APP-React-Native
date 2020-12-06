@@ -23,12 +23,6 @@ export default class Prio_p extends InputTable {
       });
       // console.log(tuple);
     }
-    // console.log(tuple);
-    // var tuple = [
-    //   {pid:1,bt1:1,art:0,io:5,bt2:3,prio:2},
-    //   {pid:2,bt1:3,art:2,io:3,bt2:1,prio:3},
-    //   {pid:3,bt1:2,art:3,io:3,bt2:1,prio:1},
-    // ];
     var total_bt = [];
     var artt = [];
     var total_btt = [];
