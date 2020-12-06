@@ -9,7 +9,6 @@ export default class Ljf extends InputTable {
     var newState = state;
     var tuple = [];
     var n = state.tableData.length;
-    console.log(state.tableData);
     for (let i = 0; i < n; i++) {
       var tempPid = state.tableData[i][0].substring(1);
       tempPid = parseInt(tempPid) + 1;
@@ -21,7 +20,6 @@ export default class Ljf extends InputTable {
         bt2: parseInt(state.tableData[i][4]),
       });
     }
-    console.log(tuple);
     var total_bt = [];
     var artt = [];
     var total_btt = [];
@@ -176,7 +174,6 @@ export default class Ljf extends InputTable {
       });
      
     }
-    console.log(tuple);
     var n = tuple.length;
     var total_btt = [];
     var artt = [];
@@ -240,10 +237,6 @@ export default class Ljf extends InputTable {
         i += tuple[state].bt - 1;
         tuple[state].bt = 0;
       }
-    }
-    console.log(que.length);
-    for (var i = 0; i < 50; i++) {
-      console.log(i + " " + final_ans[i]);
     }
     var cmp_time = [];
     for (var i = 0; i < tuple.length; i++) {

@@ -29,7 +29,6 @@ export default class Fcfs extends InputTable {
       total_btt[i] = total_bt[i] - tuple[i].io;
       artt[i] = tuple[i].art;
     }
-    //sort
     var tuple_temp = tuple;
     tuple.sort(function (a, b) {
       return a.art - b.art;
@@ -238,7 +237,6 @@ export default class Fcfs extends InputTable {
         }
       }
     }
-
     var cmp_time = []; //completion time
     for (var i = 0; i < tuple.length; i++) {
       cmp_time[i] = -1;
@@ -280,7 +278,6 @@ export default class Fcfs extends InputTable {
     newState.ganntChartArray = final_ans;
     newState.gotAnswer = true;
     newState.isChartGenerated = false;
-    // console.log(state);
     this.setState({
       newState,
     });

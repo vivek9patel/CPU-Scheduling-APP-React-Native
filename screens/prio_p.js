@@ -4,7 +4,6 @@ import InputTable from "../models/table";
 export default class Prio_p extends InputTable {
   constructor(props) {
     super(props);
-    // this.getAnswer = this.getAnswer.bind(this);
   }
   getIoEnabledAnswer = (state) => {
     var newState = state;
@@ -21,7 +20,6 @@ export default class Prio_p extends InputTable {
         bt2: parseInt(state.tableData[i][4]),
         prio: parseInt(state.tableData[i][5]),
       });
-      // console.log(tuple);
     }
     var total_bt = [];
     var artt = [];
@@ -154,8 +152,6 @@ export default class Prio_p extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    // console.log(total_wt / n + " " + total_tat / n);
-    // console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;
@@ -184,19 +180,7 @@ export default class Prio_p extends InputTable {
         art: parseInt(state.tableData[i][1]),
         prio: parseInt(state.tableData[i][3]),
       });
-      // console.log(tuple);
     }
-    // console.log(tuple);
-
-    // var tuple = [
-    //   {pid:1,bt:4,art:0,prio:2},
-    //   {pid:2,bt:2,art:1,prio:4},
-    //   {pid:3,bt:3,art:2,prio:6},
-    //   {pid:4,bt:5,art:3,prio:10},
-    //   {pid:5,bt:1,art:4,prio:8},
-    //   {pid:6,bt:4,art:5,prio:12},
-    //   {pid:7,bt:6,art:6,prio:9},
-    // ];
     var n = tuple.length;
     var artt = [];
     var total_btt = [];
@@ -303,8 +287,6 @@ export default class Prio_p extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    // console.log(total_wt / n + " " + total_tat / n);
-    // console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;

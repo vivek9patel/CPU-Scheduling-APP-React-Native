@@ -107,7 +107,6 @@ export default class Prio_np extends InputTable {
         }
       }
     }
-    console.log(que.length);
     var cmp_time = [];
     for (var i = 0; i < tuple.length; i++) {
       cmp_time[i] = -1;
@@ -128,7 +127,6 @@ export default class Prio_np extends InputTable {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-    console.log(total_wt / n + " " + total_tat / n);
     // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {
       if (final_ans[i] != "/") {
@@ -236,7 +234,6 @@ export default class Prio_np extends InputTable {
         tuple[state].bt = 0;
       }
     }
-    console.log(que.length);
     var cmp_time = [];
     for (var i = 0; i < tuple.length; i++) {
       cmp_time[i] = -1;
