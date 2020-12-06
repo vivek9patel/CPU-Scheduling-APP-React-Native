@@ -180,7 +180,6 @@ export default class Srtf extends InputTable {
         bt: parseInt(state.tableData[i][2]),
         art: parseInt(state.tableData[i][1]),
       });
-      // console.log(tuple);
     }
     var n = tuple.length;
     var artt = [];
@@ -258,7 +257,6 @@ export default class Srtf extends InputTable {
         }
       }
     }
-    console.log(que.length);
     for (var i = 0; i < n; i++) {
       tat[i] = cmp_time[i] - artt[i];
 
@@ -268,7 +266,6 @@ export default class Srtf extends InputTable {
       total_wt = total_wt + wt[i];
       total_tat = total_tat + tat[i];
     }
-    console.log(total_wt / n + " " + total_tat / n);
     // Changing Pid into string in final answer array
     for (var i = 0; i < final_ans.length; i++) {
       if (final_ans[i] != "/") {
@@ -281,8 +278,6 @@ export default class Srtf extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;

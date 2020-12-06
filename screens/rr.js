@@ -20,7 +20,6 @@ export default class Rr extends InputTable {
         io: parseInt(state.tableData[i][3]),
         bt2: parseInt(state.tableData[i][4]),
       });
-      // console.log(tuple);
     }
     console.log(tuple);
     var n = tuple.length;
@@ -151,7 +150,6 @@ export default class Rr extends InputTable {
 
     for (var i = 0; i < n; i++) {
       tat[i] = cmp_time[i] - artt[i];
-
       wt[i] = tat[i] - total_btt[i];
     }
     for (var i = 0; i < n; i++) {
@@ -205,7 +203,6 @@ export default class Rr extends InputTable {
         bt: parseInt(state.tableData[i][2]),
         art: parseInt(state.tableData[i][1]),
       });
-      // console.log(tuple);
     }
     var tq = state.time_Quantam;
     var n = tuple.length;

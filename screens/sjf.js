@@ -19,7 +19,6 @@ export default class Srtf extends InputTable {
         io: parseInt(state.tableData[i][3]),
         bt2: parseInt(state.tableData[i][4]),
       });
-      // console.log(tuple);
     }
     var n = tuple.length;
     var total_bt = [];
@@ -146,8 +145,6 @@ export default class Srtf extends InputTable {
       if (final_ans[i] != "/") break;
       final_ans.pop();
     }
-    console.log(total_wt / n + " " + total_tat / n);
-    console.log(que);
     newState.queueAnimationArray = que;
     newState.tatarr = tat;
     newState.waitingarr = wt;
@@ -181,7 +178,6 @@ export default class Srtf extends InputTable {
         bt: parseInt(state.tableData[i][2]),
         art: parseInt(state.tableData[i][1]),
       });
-      // console.log(tuple);
     }
     var n = tuple.length;
     var artt = [];

@@ -109,7 +109,6 @@ export default class Lrtf extends InputTable {
         }
       }
     }
-    console.log(que.length);
     var cmp_time = [];
     for (var i = 0; i < tuple.length; i++) {
       cmp_time[i] = -1;
