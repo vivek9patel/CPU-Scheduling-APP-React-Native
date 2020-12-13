@@ -182,11 +182,3 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes (`git commit -m 'Added some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-<!-- CONTACT -->
-
-## Contact
-
-Vivek Patel - [@vivek9patel-linkedlin](https://www.linkedin.com/in/vivek9patel/) | vivek.p9737@gmail.com
-
-Project Link: [https://github.com/vivek9patel/CPU-Scheduling-APP-React-Native](https://github.com/vivek9patel/CPU-Scheduling-APP-React-Native)
