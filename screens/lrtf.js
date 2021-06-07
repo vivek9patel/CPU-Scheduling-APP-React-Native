@@ -7,7 +7,7 @@ export default class Lrtf extends InputTable {
   }
   getIoEnabledAnswer = (state) => {
     var newState = state;
-    var backend_url = 'http://192.168.2.4:8000/lrtf';
+    var backend_url = 'http://192.168.2.4:8000/lrtf/io';
     fetch(backend_url, {
       method: 'POST',
       headers: {
